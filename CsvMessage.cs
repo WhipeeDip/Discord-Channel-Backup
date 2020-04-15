@@ -3,7 +3,7 @@ using System.Text.Json;
 using CsvHelper.Configuration.Attributes;
 using Discord;
 
-namespace Channel_Backup_Discord_Bot
+namespace Discord_Channel_Backup
 {
     /// <summary>
     /// A Discord message to be written by CsvHelper.

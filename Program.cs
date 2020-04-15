@@ -6,7 +6,7 @@ using Discord;
 using Discord.WebSocket;
 using Microsoft.Extensions.Configuration;
 
-namespace Channel_Backup_Discord_Bot
+namespace Discord_Channel_Backup
 {
     public class Program
     {
@@ -124,7 +124,7 @@ namespace Channel_Backup_Discord_Bot
             {
                 Console.WriteLine($"Enter the backup directory path ({dir}):");
                 string input = Console.ReadLine();
-                input = string.IsNullOrEmpty(input) ? dir : input;
+                input = string.IsNullOrEmpty(input) ? dir : input.Trim();
                 if (string.IsNullOrEmpty(input))
                 {
                     continue;
@@ -163,21 +163,22 @@ namespace Channel_Backup_Discord_Bot
             {
                 Console.WriteLine($"Do you want to download attached files? true/false ({attachments}):");
                 string input = Console.ReadLine();
-                input = string.IsNullOrEmpty(input) ? attachments : input;
+                input = string.IsNullOrEmpty(input) ? attachments : input.Trim().ToLower();
                 if (string.IsNullOrEmpty(input))
                 {
                     continue;
                 }
 
-                bool parsed;
-                _includeAttachments = bool.TryParse(input, out parsed);
-
-                if (!parsed)
+                if (input == "true")
                 {
-                    continue;
+                    _includeAttachments = true;
+                    break;
                 }
-
-                break;
+                else if (input == "false")
+                {
+                    _includeAttachments = false;
+                    break;
+                }
             }
 
             // configure timezone
@@ -185,7 +186,7 @@ namespace Channel_Backup_Discord_Bot
             {
                 Console.WriteLine($"Enter the timezone for formatted time output ({timezone}):");
                 string input = Console.ReadLine();
-                input = string.IsNullOrEmpty(input) ? timezone : input;
+                input = string.IsNullOrEmpty(input) ? timezone : input.Trim();
                 if (string.IsNullOrEmpty(input))
                 {
                     continue;
@@ -205,7 +206,7 @@ namespace Channel_Backup_Discord_Bot
             {
                 Console.WriteLine($"Enter your Discord token ({token}):");
                 string input = Console.ReadLine();
-                input = string.IsNullOrEmpty(input) ? token : input;
+                input = string.IsNullOrEmpty(input) ? token : input.Trim();
                 if (string.IsNullOrEmpty(input))
                 {
                     continue;

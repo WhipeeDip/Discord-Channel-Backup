@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Channel-Backup-Discord-Bot", "Channel-Backup-Discord-Bot.csproj", "{406FB93C-400C-4290-9797-AB8BD74DD56E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discord-Channel-Backup", "Discord-Channel-Backup.csproj", "{406FB93C-400C-4290-9797-AB8BD74DD56E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

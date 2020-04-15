@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Discord.Commands;
 using Discord.WebSocket;
 
-namespace Channel_Backup_Discord_Bot
+namespace Discord_Channel_Backup
 {
     /// <summary>Adapted from https://discord.foxbot.me/stable/guides/commands/intro.html</summary>
     public class CommandHandler

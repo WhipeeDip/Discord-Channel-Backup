@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Discord.Commands;
 
-namespace Channel_Backup_Discord_Bot
+namespace Discord_Channel_Backup
 {
     public class BackupModule : ModuleBase<SocketCommandContext>
     {

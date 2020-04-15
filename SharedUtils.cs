@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.WebSocket;
 
-namespace Channel_Backup_Discord_Bot
+namespace Discord_Channel_Backup
 {
     /// <summary>
     /// Shared utils across the program.

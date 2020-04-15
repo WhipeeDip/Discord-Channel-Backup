@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Channel_Backup_Discord_Bot</RootNamespace>
+    <RootNamespace>Discord_Channel_Backup</RootNamespace>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 

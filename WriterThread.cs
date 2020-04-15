@@ -9,7 +9,7 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using Discord;
 
-namespace Channel_Backup_Discord_Bot
+namespace Discord_Channel_Backup
 {
     /// <summary>
     /// Thread that handles writing messages and downloading attachments.
@@ -43,6 +43,7 @@ namespace Channel_Backup_Discord_Bot
         private readonly IMessage _firstMsg;
         private int _msgWritten;
         private readonly ThreadSafeBool _error;
+        private readonly bool _includeAttachments;
 
         /// <summary>
         /// Initializes the streams in append mode for the path.
@@ -53,13 +54,14 @@ namespace Channel_Backup_Discord_Bot
         /// (should be the backup confirmation message).</param>
         /// <param name="channel">The Discord channel being backed up.</param>
         /// <param name="msgWritten">To optionally override the message written counter.</param>
-        public WriterThread(string path, string timeZone, IMessage firstMsg, ThreadSafeBool error)
+        public WriterThread(string path, string timeZone, IMessage firstMsg, ThreadSafeBool error, bool includeAttachments)
         {
             _msgWritten = 1;
             _timeZone = timeZone;
             _path = path;
             _firstMsg = firstMsg;
             _error = error;
+            _includeAttachments = includeAttachments;
 
             Messages = new BlockingCollection<List<IMessage>>(new ConcurrentQueue<List<IMessage>>());
 
@@ -163,6 +165,16 @@ namespace Channel_Backup_Discord_Bot
             DownloadResults results = new DownloadResults();
             if (message.Attachments.Count == 0)
             {
+                return results;
+            }
+
+            if (!_includeAttachments)
+            {
+                foreach (IAttachment attachment in message.Attachments)
+                {
+                    results.Failed.Add(attachment.Filename);
+                }
+
                 return results;
             }
 

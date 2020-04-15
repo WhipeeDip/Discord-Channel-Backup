@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Channel_Backup_Discord_Bot
+namespace Discord_Channel_Backup
 {
     /// <summary>
     /// Represents the result of downloading Discord attachments.

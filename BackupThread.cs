@@ -7,11 +7,11 @@ using CsvHelper;
 using Discord;
 using Discord.WebSocket;
 
-namespace Channel_Backup_Discord_Bot
+namespace Discord_Channel_Backup
 {
     public class BackupThread
     {
-        private const string TITLE = "Backup Bot";
+        private const string TITLE = "Channel Backup";
         private const string TSV_CHRON = "Messages_Chronological.tsv";
         private static readonly Color COLOR_SUCCESS = new Color(0, 0xFF, 0);
         private static readonly Color COLOR_ERR = new Color(0xFF, 0, 0);
@@ -158,7 +158,7 @@ namespace Channel_Backup_Discord_Bot
             MessageDownloadThread msgDlThread;
             if (existingMsg == null)
             {
-                writerThread = new WriterThread(_path, Program.FormatTimeZone, startingBackupMsg, _error);
+                writerThread = new WriterThread(_path, Program.FormatTimeZone, startingBackupMsg, _error, Program.IncludeAttachments);
                 msgDlThread = new MessageDownloadThread(_channel, writerThread.Messages, startingBackupMsg, _error);
             }
             else
@@ -166,7 +166,7 @@ namespace Channel_Backup_Discord_Bot
                 Console.WriteLine("Existing message found. Starting from message: " +
                                  $"\tID: {existingMsg.Id}" +
                                  $"\tMessage: {SharedUtils.TruncateString(existingMsg.Content, 80)}");
-                writerThread = new WriterThread(_path, Program.FormatTimeZone, null, _error);
+                writerThread = new WriterThread(_path, Program.FormatTimeZone, null, _error, Program.IncludeAttachments);
                 msgDlThread = new MessageDownloadThread(_channel, writerThread.Messages, existingMsg, _error);
             }
 
@@ -324,8 +324,7 @@ namespace Channel_Backup_Discord_Bot
                 csvWriter.WriteHeader<CsvMessage>();
                 csvWriter.NextRecord();
 
-                // only loaded into memory as row is read, so should not be terrible even with many messages
-                foreach (CsvMessage msg in csvReader.GetRecords<CsvMessage>())
+                foreach (CsvMessage msg in csvReader.GetRecords<CsvMessage>().Reverse())
                 {
                     csvWriter.WriteRecord(msg);
                     csvWriter.NextRecord();

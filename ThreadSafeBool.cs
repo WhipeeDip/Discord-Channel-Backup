@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 
-namespace Channel_Backup_Discord_Bot
+namespace Discord_Channel_Backup
 {
     /// <summary>
     /// Thread safe boolean class.
