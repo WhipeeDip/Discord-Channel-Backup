@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <!-- Backup directory. Will be organized as DIR/server_id/channel/ -->
+    <BACKUP_DIR>TODO:</BACKUP_DIR>
+
+    <!-- Download attachments in messages. true or false -->
+    <INCLUDE_ATTACHMENTS>true</INCLUDE_ATTACHMENTS>
+
+    <!-- Timezone to be used for formatted timestamp. Must be in format (+/)-HH:MM -->
+    <FORMAT_TIMEZONE>-07:00</FORMAT_TIMEZONE>
+
+    <!-- Discord token for your bot. -->
+    <DISCORD_TOKEN>TODO:</DISCORD_TOKEN>
+</configuration>
