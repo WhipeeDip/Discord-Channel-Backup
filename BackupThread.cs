@@ -44,7 +44,7 @@ namespace Discord_Channel_Backup
             Thread.CurrentThread.IsBackground = false;
             // Console.WriteLine("BackupThread::Start()");
 
-            // only allow one backup thread. unlikely multiple backups will be of any use due to rate limiting.
+            // only allow one backup thread for now
             if (Running.Value)
             {
                 await _channel.SendMessageAsync("", embed: new EmbedBuilder
@@ -109,13 +109,15 @@ namespace Discord_Channel_Backup
 
             IDisposable typing = await SharedUtils.SetBackupBusyStatus(_client, _channel);
 
+            // begin backup logic
+
             _path = PreprocessFolders();
             IMessage existingMsg = null;
             try
             {
                 existingMsg = await CheckExisting();
             }
-            catch (Exception ex)
+            catch (Exception ex) // couldn't validate existing files
             {
                 if (!(ex is ReaderException || ex is ValidationException))
                 {
